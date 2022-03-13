@@ -1,0 +1,17 @@
+server:
+  port: 8000
+
+# https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.logging
+logging:
+
+  level:
+    root: info
+    org:
+      springframework:
+        web: debug
+
+# Color-coded Output
+spring:
+  output:
+    ansi:
+      enabled: always
