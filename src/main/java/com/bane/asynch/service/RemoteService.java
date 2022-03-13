@@ -32,7 +32,7 @@ public class RemoteService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return new Address("Sessame street", 1, 11000);
+        return new Address("Sesame street", 1, 11000);
     }
 
 }

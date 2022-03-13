@@ -26,7 +26,7 @@ public class UserInfoController {
      * curl "http://localhost:8000/user-info-sequential?userId=22"
      */
     @GetMapping("/user-info-sequential")
-    public UserResponse getUserInfoSequential(@RequestParam("userId") String userId) throws JsonProcessingException {
+    public UserResponse getUserInfoSequential(@RequestParam("userId") String userId) {
         log.info("getUserInfoSequential: " + userId);
         Instant startTomcat = Instant.now();
         UserResponse userResponse = userService.gatherUserInfoSequential(userId);

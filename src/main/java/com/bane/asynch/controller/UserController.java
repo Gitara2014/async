@@ -88,16 +88,13 @@ public class UserController {
         log.info("UserId: " + id);
         Instant startTomcat = Instant.now();
 
-        Callable<User> userCallable = new Callable<User>() {
-            @Override
-            public User call() throws Exception {
-                Instant childThreadStart = Instant.now();
-                User user = userService.findUser(id);
-                Instant childThreadStop = Instant.now();
-                Duration duration = Duration.between(childThreadStart, childThreadStop);
-                log.info("Child Thread call took: {}ms", duration.toMillis());
-                return user;
-            }
+        Callable<User> userCallable = () -> {
+            Instant childThreadStart = Instant.now();
+            User user = userService.findUser(id);
+            Instant childThreadStop = Instant.now();
+            Duration duration = Duration.between(childThreadStart, childThreadStop);
+            log.info("Child Thread call took: {}ms", duration.toMillis());
+            return user;
         };
 
         Instant endTomcat = Instant.now();

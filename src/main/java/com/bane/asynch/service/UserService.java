@@ -1,7 +1,6 @@
 package com.bane.asynch.service;
 
 import com.bane.asynch.domain.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +30,7 @@ public class UserService {
         return dummyUser;
     }
 
-    public UserResponse gatherUserInfoSequential(String userId){
+    public UserResponse gatherUserInfoSequential(String userId) {
 
         //1. user info API call
         UserInfo user = remoteService.getUserInfo();
