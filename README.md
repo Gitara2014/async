@@ -37,8 +37,8 @@ java -jar target/*.jar
 #### Console : 
 Set proper DEBUG log Level for springframework to troubleshoot thread execution:
 
-    ```yaml
-    # https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.logging
+```yaml
+# https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#features.logging
     logging:
     
       level:
@@ -46,7 +46,8 @@ Set proper DEBUG log Level for springframework to troubleshoot thread execution:
         org:
           springframework:
             web: debug
-    ```
+    
+```
 
 #### REFERENCE 
 
