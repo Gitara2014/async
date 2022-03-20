@@ -10,11 +10,16 @@ java -jar target/*.jar
 
 ### TEST 1 - Tomcat thread and Callback thread.
 - Synchronous call - single thread
+- With synchronous servlets, a thread handling the client HTTP request would be tied up for the entire duration of time it takes to process the request.
+- For long running tasks, where the server primarily waits around for a response (from somewhere else), this leads to thread starvation, under heavy load.
     ```shell
     curl "http://localhost:8000/user-sync?id=22"
     ```
 
 - Asynchronous call - 3 threads
+- Asynchronous servlets : let first thread that was engaged to handle the request go back to a pool, while the long running task is executing in some other thread.
+- Once the task has completed and results are ready, then the servlet container has to be notified that the results are ready,
+and then another thread will be allocated to handle sending this result back to the client.
     ```shell
     curl http://localhost:8000/user-async?id=44
     ```
@@ -58,4 +63,3 @@ Set proper DEBUG log Level for springframework to troubleshoot thread execution:
 
 #### TROUBLESHOOT
 - https://stackoverflow.com/questions/44143979/retrieving-http-response-without-blocking-the-main-thread
-- https://stackoverflow.co

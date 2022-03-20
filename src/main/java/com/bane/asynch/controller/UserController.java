@@ -60,10 +60,24 @@ public class UserController {
      *
      * <p>
      * Asynchronous call - 3 threads
-     * A child thread is created to invoke the business method in the backend server. The Tomcat thread can then be released to process other requests.
-     * After 1ms, Tomcat main thread can be released to receive other requests from the user.
-     * In the meantime, the child thread will execute asynchronously and return the result to the web server independently.
+     *
      * <p>
+     * Thread one: Tomcat thread
+     * Calls take 1ms and then thread is released to receive other requests from the users.
+     * Log: DispatcherServlet        : Exiting but response remains open for further handling
+     * </p>
+     * <p>
+     * Thread two: Callback thread
+     * A child thread is created to invoke the business method in the backend server.
+     * Will execute asynchronously and return the result to the web server independently.
+     * </p>
+     *
+     * <p>
+     * Thread three:
+     * Resume with async result handling
+     * Log: DispatcherServlet       : "ASYNC" dispatch for GET "/user-async?id=44", parameters={masked}
+     * </p>
+     *
      * <p>
      * 2022-03-13 19:06:12.826 DEBUG 71423 --- [io-8000-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/user-async?id=22", parameters={masked}
      * 2022-03-13 19:06:12.826 DEBUG 71423 --- [io-8000-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.bane.asynch.controller.UserController#getUserAsynchronous(String)

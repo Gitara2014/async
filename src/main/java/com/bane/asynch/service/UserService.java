@@ -23,6 +23,7 @@ public class UserService {
 
     public User findUser(String id) {
         try {
+            log.info("finding user...");
             Thread.sleep(3 * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
